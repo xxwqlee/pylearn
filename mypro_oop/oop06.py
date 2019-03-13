@@ -31,18 +31,18 @@ def animal_shout(a):
         a.shout()
 
 
-d1 = Dog('TuDou')
-c1 = Cat('PJ')
+td = Dog('TuDou')
+pj = Cat('PJ')
 # 多态polymorphism
-animal_shout(d1)
-animal_shout(c1)
+animal_shout(td)
+animal_shout(pj)
 # 运算符重载
-print(d1 + c1)
+print(td + pj)
 
 # 测试特殊属性
-print(dir(d1))
-print(c1.__dict__)
-print(c1.__class__)
+print(dir(td))
+print(pj.__dict__)
+print(pj.__class__)
 print(Dog.__bases__)
 print(Dog.mro())
 print(Cat.__mro__)
