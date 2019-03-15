@@ -34,3 +34,7 @@ print('创建了{0}个Student对象'.format(Student.count))
 Student.print_school()
 # 静态方法的使用
 Student.print_add(stu1.score, stu2.score)
+# 对象可以访问类属性，类不能访问对象的实例属性
+stu1.print_school()
+print(stu1.count)
+
