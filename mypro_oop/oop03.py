@@ -1,4 +1,4 @@
-# 测试@property的使用
+# 测试@property的使用:装饰器
 class Employee:
 
     @property
@@ -11,11 +11,11 @@ class Employee:
         self.__salary = salary
 
     @property
-    def salary(self):   # 相当于salary属性的getter方法
+    def salary(self):   # 相当于salary属性的get方法
         return self.__salary
 
     @salary.setter
-    def salary(self, salary):   # 相当于salary属性的setter方法
+    def salary(self, salary):   # 相当于salary属性的set方法
         if 1000 < salary < 50000:
             self.__salary = salary
         else:

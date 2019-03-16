@@ -1,5 +1,6 @@
-
 class Person:
+
+    base = "chi he la sa shui"
 
     def __init__(self, name, age):
         self.name = name
@@ -15,7 +16,7 @@ class Person:
 class Student(Person):
 
     def __init__(self, name, age, score):
-        Person.__init__(self, name, age)
+        super().__init__(name, age)
         self.score = score
 
     def say_name(self):
@@ -25,6 +26,7 @@ class Student(Person):
 # 子类继承父类的方法和属性
 stu1 = Student('pj', 22, 59)
 stu1.say_age()
+print(stu1.base)
 print(stu1.name, stu1.score)
 # 子类访问父类的私有属性
 print(stu1._Person__age)
