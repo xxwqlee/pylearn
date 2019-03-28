@@ -22,7 +22,7 @@ for i in range(10000000):
     a += 'lxy'
 time02 = time.time()
 
-print('time='+ str(time02-time01))
+print('time=' + str(time02-time01))
 time03 = time.time()
 li = []
 for i in range(10000000):
