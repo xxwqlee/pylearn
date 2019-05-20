@@ -49,13 +49,13 @@ class Triangle:
             print()
 
 
-class NumJudge:
+class IsNum:
 
     def __init__(self):
         pass
 
     @staticmethod
-    def prime_judge(a):
+    def is_prime(a):
         end = int(math.sqrt(a))
         is_prime = True
         for x in range(1, end + 1):
@@ -81,13 +81,14 @@ class NumJudge:
                 break
 
 
-tri1 = Triangle(3, 5, 7)
-print(tri1.perimeter(), tri1.area())
-tri2 = Triangle(3, 4, 10)
-tri1.draw_tri()
+if __name__ == "__main__":
+    tri1 = Triangle(3, 5, 7)
+    print(tri1.perimeter(), tri1.area())
+    tri2 = Triangle(3, 4, 10)
+    tri1.draw_tri()
 
-NumJudge.prime_judge(11)
-NumJudge.prime_judge(12)
-NumJudge.mm_judge(3, 5)
+    IsNum.is_prime(11)
+    IsNum.is_prime(12)
+    IsNum.mm_judge(3, 5)
 
 
