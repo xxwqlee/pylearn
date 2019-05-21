@@ -5,44 +5,42 @@
 
 
 def ba_dict():
-    scores = {'骆昊': 95, '白元芳': 78, '狄仁杰': 82}
+    fam_info = {'lxy': (25, 'male', 'stu'),
+                'pjj': (26, 'female', 'tester'),
+                'tdd': (3, 'female', 'dog')}
     # 通过键可以获取字典中对应的值
-    print(scores['骆昊'])
-    print(scores['狄仁杰'])
+    print(fam_info['lxy'])
     # 对字典进行遍历(遍历的其实是键再通过键取对应的值)
-    for elem in scores:
-        print('%s\t--->\t%d' % (elem, scores[elem]))
+    for elem in fam_info:
+        print('{}\t--->\t{}'.format(elem, fam_info[elem]))
     # 更新字典中的元素
-    scores['白元芳'] = 65
-    scores['诸葛王朗'] = 71
-    scores.update(冷面=67, 方启鹤=85)
-    print(scores)
-    if '武则天' in scores:
-        print(scores['武则天'])
-    print(scores.get('武则天'))
+    fam_info['tdd'] = (3, 'female', 'eat and sleep')
+    fam_info.update(lxy=(26, 'male', 'engineer'))
+    print(fam_info)
+    if 'tdd' in fam_info:
+        print(fam_info['tdd'])
+    print(fam_info.get('pjj'))
     # get方法也是通过键获取对应的值但是可以设置默认值
-    print(scores.get('武则天', 60))
+    print(fam_info.get('lxy', ()))
     # 删除字典中的元素
-    print(scores.popitem())
-    print(scores.popitem())
-    print(scores.pop('骆昊', 100))
+    print(fam_info.popitem())
+    print(fam_info.pop('???', 100))
     # 清空字典
-    scores.clear()
-    print(scores)
+    fam_info.clear()
+    print(fam_info)
 
 
 def ba_set():
-    set1 = {1, 2, 3, 3, 3, 2}
+    set1 = {2, 3, 4}
     print(set1)
-    print('Length =', len(set1))
-    set2 = set(range(1, 10))
+    print('Length =', len(set1))  # 元素个数
+    set2 = set(range(1, 3))
     print(set2)
-    set1.add(4)
-    set1.add(5)
-    set2.update([11, 12])
+    set1.add(1)
     print(set1)
+    set2.update([4, 5])
+    set2.discard(5)  # delete 5
     print(set2)
-    set2.discard(5)
     # remove的元素如果不存在会引发KeyError
     if 4 in set2:
         set2.remove(4)
@@ -52,7 +50,7 @@ def ba_set():
         print(elem ** 2, end=' ')
     print()
     # 将元组转换成集合
-    set3 = set((1, 2, 3, 3, 2, 1))
+    set3 = set((2, 3, 4))
     print(set3.pop())
     print(set3)
     # 集合的交集、并集、差集、对称差运算
@@ -69,10 +67,8 @@ def ba_set():
     # print(set2.issubset(set1))
     print(set3 <= set1)
     # print(set3.issubset(set1))
-    print(set1 >= set2)
+    print(set2 >= set3)
     # print(set1.issuperset(set2))
-    print(set1 >= set3)
-    # print(set1.issuperset(set3))
 
 
 if __name__ == "__main__":

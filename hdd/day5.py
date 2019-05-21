@@ -45,7 +45,7 @@ def ba_str():
     str3 = '  jackfrued@126.com '
     print(str3)
     # 获得字符串修剪左右两侧指定字符的拷贝
-    print(str3.strip(' jm'))
+    print(str3.strip(' jma'))
     #  join操作
     l1 = ['a', 'b', 'c']
     str4 = ' '.join(l1)
@@ -53,7 +53,7 @@ def ba_str():
 
 
 def test_str():
-    x = 1000000
+    x = 10000
     # 方法一
     start_time1 = time.time()
     s1 = ''
