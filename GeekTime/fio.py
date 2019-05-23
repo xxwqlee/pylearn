@@ -15,8 +15,8 @@ def parse(text):
     word_list = text.split(' ')
     # 去除空白单词
     word_cnt = {}
-    for word in word_list:
-        if word not in word_cnt:
+    for _word in word_list:
+        if _word not in word_cnt:
             word_cnt[word] = 0
         word_cnt[word] += 1
     # 按照词频排序
