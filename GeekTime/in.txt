@@ -1,0 +1,13 @@
+ For serial elastic actuator systems,most existing methods based on a predetermined 
+ nominal environment (usually stiff). However, in practical applications the dynamics 
+ of environment are mostly unknown and time-varying, which makes the control problem 
+ more challenging. Additionally, Many works fail to take SEA as a actuator into 
+ consideration in practical applications while time-varying ground torque signals need
+  to be output. To deal with these problems, an active disturbance rejection control 
+  method is proposed for SEA force control in an interactive environment. Specifically,
+   by considering the periodically changed dynamics of load as the disturbance of SEA 
+   interacting with environment, the dynamics of SEA was derived and simplified, then 
+   a ADRC based force control framework were built within a nonlinear extended state 
+   observer, a sliding mode differentiator and a nonlinear feedback controller. 
+   Finally, the effectiveness of ADRC based force controller were proofed and compared
+   with traditional cascade PID controller by using MATLAB/ADAMS Co-simulation.
