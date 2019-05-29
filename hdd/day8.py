@@ -9,8 +9,8 @@ class Card:
     """"一张牌"""
     __slots__ = ('_suite', '_face')
 
-    def __init__(self, color, face):
-        self._suite = color
+    def __init__(self, suite, face):
+        self._suite = suite
         self._face = face
 
     @property
@@ -32,13 +32,13 @@ class Card:
             face_str = 'K'
         else:
             face_str = str(self._face)
-        return '%s%s' % (self._suite, face_str)
+        return f'{self._suite, face_str}'
 
     def __repr__(self):
         return self.__str__()
 
 
-class Poker(object):
+class Poker(object):  # without joker
     """一副牌"""
 
     def __init__(self):
@@ -92,13 +92,24 @@ class Player(object):
         """玩家整理手上的牌"""
         self._cards_on_hand.sort(key=card_key)
 
+    @staticmethod
+    def get_key(card):
+        return card.suite, card.face
 
-# 排序规则-先根据花色再根据点数排序
-def get_key(card):
-    return card.suite, card.face
+
+class GameSimple21:
+
+    def __init__(self, num_of_player):
+        if not isinstance(num_of_player, int):
+            raise Exception('num_of_player must be an integer.')
+        if num_of_player <= 0:
+            raise Exception('num_of_player must be greater or equal to 0')
+        self._num_of_players = num_of_player
+        # TODO:创建玩家，确定一个庄家，其余为闲家
 
 
-def main():
+
+def deal_test():  # 排序规则-先根据花色再根据点数排序
     p = Poker()
     p.shuffle()
     players = [Player('东邪'), Player('西毒'), Player('南帝'), Player('北丐')]
@@ -107,9 +118,9 @@ def main():
             player.get(p.next)
     for player in players:
         print(player.name + ':', end=' ')
-        player.arrange(get_key)
+        player.arrange(player.get_key)
         print(player.cards_on_hand)
 
 
 if __name__ == '__main__':
-    main()
+    deal_test()
