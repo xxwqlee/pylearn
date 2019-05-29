@@ -19,7 +19,7 @@ prt2(1, 3, 40)
 prt2(1, 3, 40, 50)
 
 
-def prt3(a, b, *c, **d):
+def prt3(a, b, *c, **d):  # *：将多个参数收集到tuple中，**：多个参数收集到dict中
     print('a =', a, 'b =', b, 'c =', c, 'd =', d)
 
 

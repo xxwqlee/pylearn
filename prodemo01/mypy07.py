@@ -4,7 +4,7 @@ g = [lambda a:a*2, lambda b:b*3]
 
 print(g[0](3), g[1](3))
 
-# eval()函数
+# eval()函数：将str当成有效的表达式来求值并返回计算结果
 
 eval("print('dad')")
 
