@@ -2,16 +2,16 @@ class SalaryAccount:
     """工资计算类"""
 
     __age = 25  # 私有属性
-    age = 18
+    work_age = 3
 
-    @staticmethod
-    def __work():   # 私有方法
-        print('好好上班！')
+    def __work(self):   # 私有方法
+        print(f'上班{self.work_age}年！')
 
     def __call__(self, month_sal):
         year_sal = month_sal * 12
         day_sal = month_sal / 22.5
         hour_sal = day_sal / 8
+        self.__work()  # 类中可以访问私有属性和方法
 
         return dict(
             month_salary=month_sal,
@@ -21,12 +21,10 @@ class SalaryAccount:
 
 
 PjSalary = SalaryAccount()
-# 可调用对象：通过对象名实际调用__call__方法
-print(PjSalary(7000))
 
-# 测试私有属性
-print(PjSalary.age)
-# print(PjSalary.__age)
-print(PjSalary._SalaryAccount__age)
-# 测试私有方法
-PjSalary._SalaryAccount__work()
+print(PjSalary(7000))  # 可调用对象：通过对象名实际调用__call__方法
+
+print(PjSalary.work_age)
+# print(PjSalary.__age)  私有属性无法直接访问
+print(PjSalary._SalaryAccount__age)  # 访问私有属性
+PjSalary._SalaryAccount__work()  # 测试私有方法
