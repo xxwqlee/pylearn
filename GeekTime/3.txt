@@ -1,0 +1,1 @@
+Another kind of force control approach for SEAs main design based on the force source dynamics model[11,12,13,14], this kind of method consider motor or hydraulic cylinder as the ideal source of torque output, because the motor force output is proportional to the field current directly, so this inner loop simplification is relatively accurate and reasonable.
