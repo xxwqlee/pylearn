@@ -13,8 +13,8 @@
 
 """
 # 方式1
-# import mypro_oop.myadd
-# print(mypro_oop.myadd.x)
+# import my_oop.myadd
+# print(my_oop.myadd.x)
 # 方式2
-from mypro_oop import add
+from my_oop import add
 print(add(4, 5))

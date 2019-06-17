@@ -2,9 +2,11 @@
     Create a simple search engine:搜索器、索引器、检索器和用户接口
     语料(corpus)、倒序索引(inverted index)
     模拟敏捷开发过程中的迭代开发流程
-
+    合并K个有序数组
+    LRU缓存
 """
 import re
+import pylru
 
 
 class SearchEngineBase:  # 搜索引擎基类
@@ -18,7 +20,7 @@ class SearchEngineBase:  # 搜索引擎基类
         self.process_corpus(file_path, text)
 
     # 对内容进行处理和保存，处理后的内容称为索引（index）
-    def process_corpus(self, id, text):
+    def process_corpus(self, idt, text):
         raise Exception('process_corpus not implemented.')
 
     # 给定一个询问，处理询问，再通过索引检索，然后返回
@@ -45,14 +47,14 @@ class SimpleEngine(SearchEngineBase):
         super(SimpleEngine, self).__init__()
         self.__id_to_texts = {}
 
-    def process_corpus(self, id, text):
-        self.__id_to_texts[id] = text
+    def process_corpus(self, idt, text):
+        self.__id_to_texts[idt] = text
 
     def search(self, query):
         results = []
-        for id, text in self.__id_to_texts.items():
+        for idt, text in self.__id_to_texts.items():
             if query in text:
-                results.append(id)
+                results.append(idt)
         return results
 
 
@@ -61,8 +63,8 @@ class BOWEngine(SearchEngineBase):
         super().__init__()
         self.__id_to_words = {}
 
-    def process_corpus(self, id, text):
-        self.__id_to_words[id] = self.parse_text_to_words(text)
+    def process_corpus(self, idw, text):
+        self.__id_to_words[idw] = self.parse_text_to_words(text)
 
     def search(self, query):
         query_words = self.parse_text_to_words(query)
@@ -156,10 +158,42 @@ class BOWInvertedIndexEngine(SearchEngineBase):
         return set(word_list)
 
 
+class LRUCache:
+    def __init__(self, size=32):
+        self.cache = pylru.lrucache(size)
+
+    def has(self, key):
+        return key in self.cache
+
+    def get(self, key):
+        return self.cache[key]
+
+    def set(self, key, value):
+        self.cache[key] = value
+
+
+class BOWInvertedIndexEngineWithCache(BOWInvertedIndexEngine, LRUCache):
+    def __init__(self):
+        super(BOWInvertedIndexEngineWithCache, self).__init__()
+        LRUCache.__init__(self)
+
+    def search(self, query):
+        if self.has(query):
+            print('cache hit!')
+            return self.get(query)
+
+        result = super().search(query)
+        self.set(query, result)
+
+        return result
+
+
 if __name__ == "__main__":
     # simple_engine = SimpleEngine()
     # main(simple_engine)
     # bow_engine = BOWEngine()
     # main(bow_engine)
-    bii_engine = BOWInvertedIndexEngine()
-    main(bii_engine)
+    # bii_engine = BOWInvertedIndexEngine()
+    # main(bii_engine)
+    biiwc_engine = BOWInvertedIndexEngineWithCache()
+    main(biiwc_engine)
