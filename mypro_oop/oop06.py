@@ -1,15 +1,22 @@
-# 多态,运算符重载
-class Animal:
+"""
+    多态,运算符重载
+    抽象：通过abc模块的ABCMeta元类和装饰器来达到抽象类的效果
+"""
+from abc import ABCMeta, abstractmethod
+
+
+class Animal(object, metaclass=ABCMeta):
 
     def __init__(self, name):
         self.name = name
 
+    @abstractmethod
     def shout(self):
-        print('shout')
+        pass
 
     def __add__(self, other):
         if isinstance(other, Animal):
-            return '{0}--{1}'.format(self.name, other.name)
+            return f'{self.name}--{other.name}'
         else:
             return 'error:不是同类对象'
 
@@ -17,13 +24,13 @@ class Animal:
 class Dog(Animal):
 
     def shout(self):
-        print('wongwongwong!')
+        print('WongWongWong!')
 
 
 class Cat(Animal):
 
     def shout(self):
-        print('miaomiaomiao!')
+        print('MiaoMiaoMiao!')
 
 
 def animal_shout(a):
@@ -31,19 +38,22 @@ def animal_shout(a):
         a.shout()
 
 
-td = Dog('TuDou')
-pj = Cat('PJ')
-# 多态polymorphism
-animal_shout(td)
-animal_shout(pj)
-# 运算符重载
-print(td + pj)
+# unknown_animal = Animal('???') 无法创建该抽象类
+# TypeError: Can't instantiate abstract class Animal with abstract method
+if __name__ == "__main__":
+    td = Dog('TuDou')
+    pj = Cat('PJ')
+    # 多态polymorphism
+    animal_shout(td)
+    animal_shout(pj)
+    # 运算符重载
+    print(td + pj)
 
-# 测试特殊属性
-print(dir(td))
-print(pj.__dict__)
-print(pj.__class__)
-print(Dog.__bases__)
-print(Dog.mro())
-print(Cat.__mro__)
-print(Animal.__subclasses__())
+    # 测试特殊属性
+    print(dir(td))
+    print(pj.__dict__)
+    print(pj.__class__)
+    print(Dog.__bases__)
+    print(Dog.mro())
+    print(Cat.__mro__)
+    print(Animal.__subclasses__())

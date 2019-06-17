@@ -1,4 +1,9 @@
-# Design Pattern 工厂模式，单例模式
+"""
+    常用设计模式
+    Design Pattern 工厂模式，单例模式
+"""
+
+
 class ComputerFactory:
 
     __obj = None
@@ -51,8 +56,9 @@ class Hasee(Computer):
     pass
 
 
-fac = ComputerFactory()
-c1 = fac.create_computer('联想')
-c2 = fac.create_computer('神舟')
-c3 = fac.create_computer('惠普')
-c1.calculate()
+if __name__ == "__main__":
+    fac = ComputerFactory()
+    c1 = fac.create_computer('联想')
+    c2 = fac.create_computer('神舟')
+    c3 = fac.create_computer('惠普')
+    c1.calculate()

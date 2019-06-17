@@ -4,7 +4,7 @@ class Employee:
     @property
     def print_demo(self):
         print('salary is 9999')
-        return 10001
+        return 'actually is 7000'
 
     def __init__(self, name, salary):
         self.__name = name

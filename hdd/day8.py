@@ -38,7 +38,7 @@ class Card:
         return self.__str__()
 
 
-class Poker(object):  # without joker
+class Poker(object):  # without jokers
     """一副牌"""
 
     def __init__(self):
@@ -75,6 +75,7 @@ class Player(object):
     def __init__(self, name):
         self._name = name
         self._cards_on_hand = []
+        self._wager = 1000
 
     @property
     def name(self):
@@ -102,11 +103,49 @@ class GameSimple21:
     def __init__(self, num_of_player):
         if not isinstance(num_of_player, int):
             raise Exception('num_of_player must be an integer.')
-        if num_of_player <= 0:
-            raise Exception('num_of_player must be greater or equal to 0')
+        if num_of_player < 2 or num_of_player > 6:
+            raise Exception('num_of_player must be within range of 2-6')
         self._num_of_players = num_of_player
-        # TODO:创建玩家，确定一个庄家，其余为闲家
+        self.players = [Player('庄家')]
+        for i in range(1, num_of_player):
+            self.players.append(Player(f'闲家{i}'))
+        self.poker = Poker()
 
+    def init_deal(self):
+        self.poker.shuffle()
+        for player in self.players:
+            if player.name == '庄家':
+                player.get(self.poker.next)
+                # TODO：庄家有一张为暗牌
+                player.get(self.poker.next)
+                # TODO: 判断是否为BlackJack
+            else:
+                player.get(self.poker.next)
+                player.get(self.poker.next)
+
+    def show_card(self):
+        for player in self.players:
+            print(f"{player.name}: {player.cards_on_hand}")
+
+    def bet(self):
+        pass
+        # TODO: 下注
+
+    def hit(self):
+        pass
+        # TODO: 拿牌
+
+    def buy_insurance(self):
+        pass
+        # TODO:买保险
+
+    def double(self):
+        pass
+        # TODO: 加倍
+
+    def surrender(self):
+        pass
+        # TODO: 投降
 
 
 def deal_test():  # 排序规则-先根据花色再根据点数排序
@@ -117,10 +156,12 @@ def deal_test():  # 排序规则-先根据花色再根据点数排序
         for player in players:
             player.get(p.next)
     for player in players:
-        print(player.name + ':', end=' ')
         player.arrange(player.get_key)
-        print(player.cards_on_hand)
+        print(f"{player.name}: {player.cards_on_hand}")
 
 
 if __name__ == '__main__':
     deal_test()
+    new_game = GameSimple21(6)
+    new_game.init_deal()
+    new_game.show_card()
