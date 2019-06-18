@@ -1,6 +1,10 @@
 """
     1 文件输入输出（NLP练习）
     2 JSON 序列化实战练习
+    dump:将Python对象按照JSON格式序列化到文件中
+    dumps:将Python对象处理成JSON格式的字符串
+    load:将文件中的JSON数据反序列化成对象
+    loads:将字符串中的内容反序列化成Python对象
 """
 import re
 import json
@@ -12,17 +16,17 @@ def parse(text):
     # 小写
     text = text.lower()
     # 生成所有单词的列表
-    word_list = text.split(' ')
+    words_list = text.split(' ')
     # 去除空白单词
-    word_cnt = {}
-    for _word in word_list:
-        if _word not in word_cnt:
-            word_cnt[word] = 0
-        word_cnt[word] += 1
+    words_cnt = {}
+    for word in words_list:
+        if word not in words_cnt:
+            words_cnt[word] = 0
+        words_cnt[word] += 1
     # 按照词频排序
-    sorted_word_cnt = sorted(word_cnt.items(), key=lambda kv: kv[1], reverse=True)
+    sorted_words_cnt = sorted(words_cnt.items(), key=lambda kv: kv[1], reverse=True)
 
-    return sorted_word_cnt
+    return sorted_words_cnt
 
 
 def json_pra():
@@ -39,11 +43,16 @@ def json_pra():
 
 
 if __name__ == "__main__":
-    with open('in.txt', 'r')as f_in:
-        txt = f_in.read()
-    word_and_freq = parse(txt)
+    try:
+        with open('in.txt', 'r')as f_in:
+            txt = f_in.read()
+        word_and_freq = parse(txt)
 
-    with open('out.txt', 'w')as f_out:
-        for word, freq in word_and_freq:
-            f_out.write(f'{word} {freq}\n')
+        with open('out.txt', 'w')as f_out:
+            for words, freq in word_and_freq:
+                f_out.write(f'{words} {freq}\n')
+    except IOError as e:
+        print(e)
+    except Exception as oe:
+        print(oe)
     json_pra()
